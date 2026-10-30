@@ -218,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Manual edits
+src/Workflows/ElasticConstants/SimulationFileDump
+
+POSCAR
+*.log
