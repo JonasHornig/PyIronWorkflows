@@ -16,3 +16,24 @@ def CreateStrainRange(ZeroStrainPoint_Percent:float = 0.0, Range_Percent:float =
         for Strain in OneSidedStrain:
             StrainRange.append(Strain)
     return StrainRange
+
+class LoggingFile():
+    def __init__(self, FilePath: str, Mode: str = "w"):
+        self.FilePath = FilePath
+        self.File = open(FilePath, Mode)
+
+    def LogEvent(self, Event, NewLine: bool = True):
+        self.File.write(f"{datetime.now():%H:%M:%S} | {Event}" + ("\n" if NewLine else ""))
+        self.File.flush()
+
+    
+    def LogInformation(self, Input, NewLine: bool = True):
+        self.File.write(str(Input) + "\n" if NewLine else str(Input))
+        self.File.flush()
+
+    def Close(self):
+        self.File.close()
+
+    def __del__(self):
+        if not self.File.closed:
+            self.File.close()
